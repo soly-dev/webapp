@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <h1> Press the botton to see new text</h1>
       {
-        hide?<h2>A bunch of new texts</h2>:null
+        hide?<h2>A bunch of new text</h2>:null
       }
       <button onClick={() => setshow(true)}>Press Me</button>
     </div>
