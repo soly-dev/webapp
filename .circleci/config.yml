@@ -22,9 +22,9 @@ jobs:
       - run: 
           name: run build 
           command: npm run build
-  node-18-0-0-build:
+  node-16-15-0-build:
     docker:
-      - image: cimg/node:18.0.0
+      - image: cimg/node:16.15.0
     steps:
       - checkout
       - restore_cache:
