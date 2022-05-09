@@ -40,7 +40,7 @@ jobs:
       - run: 
           name: run build 
           command: npm run build
-  Unit-test:
+  unit-test:
     docker:
       - image: cimg/node:16.15.0
     steps:
@@ -68,6 +68,6 @@ workflows:
           requires: 
             - node-15-1-build
             - node-16-15-0-build 
-     - heroku/deploy-via-git: 
-        requires: 
-          - Unit-test
+      - heroku/deploy-via-git: 
+          requires: 
+            - unit-test
