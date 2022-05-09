@@ -4,7 +4,7 @@ orbs:
   heroku: circleci/heroku@1.2.6
 
 jobs:
-  node-15.1-build:
+  node-15-1-build:
     docker:
       - image: cimg/node:15.1
     steps:
@@ -22,7 +22,7 @@ jobs:
       - run: 
           name: run build 
           command: npm run build
-  node-18.0.0-build:
+  node-18-0-0-build:
     docker:
       - image: cimg/node:18.0.0
     steps:
@@ -44,8 +44,8 @@ jobs:
 workflows:
   orb-free-workflow:
     jobs:
-      - node-15.1-build
-      - node-18.0.0-build
+      - node-15-1-build
+      - node-18-0-0-build
   #heroku_deploy:
   #  jobs:
   #    - heroku/deploy-via-git
