@@ -40,12 +40,36 @@ jobs:
       - run: 
           name: run build 
           command: npm run build
+  Unit-test:
+    docker:
+      - image: cimg/node:16.15.0
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - node-deps-v1-{{ .Branch }}-{{checksum "package-lock.json"}}
+      - run:
+          name: install packages
+          command: npm ci
+      - save_cache:
+          key: node-deps-v1-{{ .Branch }}-{{checksum "package-lock.json"}}
+          paths:
+            - ~/.npm
+      - run: 
+          name: run build 
+          command: npm run test
 
 workflows:
   orb-free-workflow:
     jobs:
       - node-15-1-build
       - node-16-15-0-build
+  unit-test: 
+    jobs:
+      - Unit-test:
+        requires: 
+          - node-15-1-build
+          - node-16-15-0-build 
   #heroku_deploy:
   #  jobs:
   #    - heroku/deploy-via-git
